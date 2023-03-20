@@ -4,8 +4,7 @@
 This provides a template code to follow for building a MongoDB connector using [Data API](https://www.mongodb.com/docs/atlas/api/data-api/). 
 
 ## Structure
-![image](https://user-images.githubusercontent.com/114057324/226341757-a2d85a89-e073-405c-b63b-069e5f059013.png)
-
+![image](https://user-images.githubusercontent.com/114057324/226342954-f7cc6021-9d63-469e-b5a6-63c7276deead.png)
 
 
 ## Supported functionalities : 
