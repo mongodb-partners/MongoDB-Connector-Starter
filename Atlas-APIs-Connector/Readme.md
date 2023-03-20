@@ -33,11 +33,15 @@ This provides a template code to follow for building a MongoDB connector using [
 
   To check if the client is properly initialized with proper values, below method can be utalized. 
   
-  ```client.authenticate()``` : Return `True` or `False`
+  ```client.authenticate()``` : 
+  
+  Returns `True` -> if authentication succeeds
+  
+    or `False`-> if authentication fails
   
   
 - Running CRUD Operations : 
-  1.  Select the operation to be carried out:
+  1.  Select the operation to be carried out ( All operations are listed [here](https://www.mongodb.com/docs/atlas/api/data-api-resources/) ): 
   ```
   # Set the operation to be performed
   client.set_operation(pyAPI.CRUD.FIND_ONE)
