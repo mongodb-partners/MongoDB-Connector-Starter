@@ -3,6 +3,9 @@ import requests
 
 import py_api_connector.utils.setup as setup
 from py_api_connector.utils.enum import CRUD, ERROR_CODE
+import logging
+
+logger = logging.getLogger(__name__)
 
 class DataAPIClient:
     def __init__(self, **kwargs):
@@ -16,6 +19,7 @@ class DataAPIClient:
         '''
         For authenticating the API Key and returning if it is valid or not.
         '''
+        logger.info("API authentication started")
         self.set_operation(CRUD.FIND_ONE)
         self.set_payload()
         response = self.execute()
@@ -54,11 +58,11 @@ class DataAPIClient:
         For executing the request and returning the response.
         '''
         try:
-            print("Execution values :: \n\b", 
-                  self.url,"\n", 
-                  self.headers, "\n", 
+            print("Execution values :: \n\b",
+                  self.url, "\n",
+                  self.headers, "\n",
                   self.payload)
-            
+
             response = requests.request(
                 "POST",
                 self.url,
@@ -67,35 +71,35 @@ class DataAPIClient:
             )
             response.raise_for_status()
             return response
-            
+
         except requests.exceptions.HTTPError as httpError:
             # Handle any HTTP errors here
             status_code = httpError.response.status_code
 
             if status_code == ERROR_CODE.BAD_REQUEST.value:
-                print("Bad Request \n\
+                logger.error("Bad Request \n\
                       The request was invalid. This might mean:\
                       \n - A request header is missing.\
                       \n - The request body is malformed or improperly encoded.\
                       \n - A field has a value with an invalid type.\
                       \n - The specified data source is disabled or does not exist.\
                       \n - The specified database or collection does not exist.")
-                
+
             elif status_code == ERROR_CODE.UNAUTHOURISED.value:
-                print("Unauthorized \n\
+                logger.error("Unauthorized \n\
                       - The request did not include an authorized and enabled Data API Key. Ensure that your Data API Key is enabled for the cluster.")
 
             elif status_code == ERROR_CODE.NOT_FOUND.value:
-                print("Not found\n\
+                logger.error("Not found\n\
                       - The request was sent to an endpoint that does not exist.")
 
             elif status_code >= ERROR_CODE.SERVER_ERROR.value:
-                print("Server Error \n\
+                logger.error("Server Error \n\
                       - The Data API encountered an internal error and could not complete the request.")
-            
+
             return httpError.response
 
         except Exception as e:
             # Handle any other exceptions here
-            print('An unexpected error occurred:', e)
+            logger.error('An unexpected error occurred:', e)
             return ERROR_CODE.SERVER_ERROR.value
