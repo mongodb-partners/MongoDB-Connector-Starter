@@ -13,3 +13,10 @@ class CRUD(Enum):
     REPLACE_ONE = ("/replaceMany", commands.DeleteOne)
     DELETE_MANY = ("/deleteMany", commands.DeleteMany)
     AGGREGATE = ("/aggregate", commands.Aggregation)
+
+
+class ERROR_CODE(Enum):
+    BAD_REQUEST = 400
+    UNAUTHOURISED = 401
+    NOT_FOUND = 404
+    SERVER_ERROR = 500
