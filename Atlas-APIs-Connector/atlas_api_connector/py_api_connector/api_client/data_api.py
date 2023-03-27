@@ -85,10 +85,12 @@ class DataAPIClient:
                        - The request did not include an authorized and enabled Data API Key. Ensure that your Data API Key is enabled for the cluster.")
 
             elif status_code == 404:
-                print("The request was sent to an endpoint that does not exist.")
+                print("Not found\n\
+                      - The request was sent to an endpoint that does not exist.")
 
             elif status_code >= 500:
-                print("The Data API encountered an internal error and could not complete the request.")
+                print("Server Error \n\
+                      - The Data API encountered an internal error and could not complete the request.")
             
         except requests.exceptions.Timeout as e:
             # Handle any timeout errors here
