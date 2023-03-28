@@ -25,15 +25,7 @@ def authenticate():
     else:
         logging.info("authentication error")
 
-
-if __name__ == '__main__':
-    # Check if the authentication is valid
-    logging.info("---- AUTHENTICATING ---- ")
-    authenticate()
-
-    # Find one document based on filter
-    logging.info("---- FIND ONE ---- ")
-
+def find_one():
     # Set the operation to be performed
     client.set_operation(pyAPI.CRUD.FIND_ONE)
     # Set the payload, might include filter, projections.
@@ -43,9 +35,32 @@ if __name__ == '__main__':
     )
     # Execute the client and get the response.
     response = client.execute()
+    logging.info(response)
 
-    if response:
-        # Check if response recieved.
-        print("Response", response.text)
-    else:
-        print("No response!")
+def insert_one():
+    # Set INSERT_ONE operation
+    client.set_operation(pyAPI.CRUD.INSERT_ONE)
+    # Set the payload
+    client.set_payload(
+        document = {"test_doc" : True}
+    )
+    # Execute 
+    response = client.execute()
+    logging.info(response)
+
+
+# TODO: Implement all other methods in the same format
+
+
+if __name__ == '__main__':
+    # Check if the authentication is valid
+    logging.info("---- AUTHENTICATING ---- ")
+    authenticate()
+
+    # Find one document based on filter
+    logging.info("---- FIND ONE ---- ")
+    find_one()
+
+    # Insert one document 
+    logging.info("---- INSERT ONE ----")
+    insert_one()

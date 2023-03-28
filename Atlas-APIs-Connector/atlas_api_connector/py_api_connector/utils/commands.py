@@ -28,9 +28,6 @@ class FindCommand(DataAPICommand):
 
 class InsertOne(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['document'] = kwargs.get('document', None)
         self.payload = payload
     
@@ -39,9 +36,6 @@ class InsertOne(DataAPICommand):
 
 class InsertMany(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['documents'] = kwargs.get('documents', None)
         self.payload = payload
     
@@ -50,9 +44,6 @@ class InsertMany(DataAPICommand):
 
 class UpdateOne(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['filter'] = kwargs.get('filter', None)
         payload['update'] = kwargs.get('update', None)
         payload['upsert'] = kwargs.get('upsert', False)
@@ -63,9 +54,6 @@ class UpdateOne(DataAPICommand):
 
 class UpdateMany(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['filter'] = kwargs.get('filter', None)
         payload['update'] = kwargs.get('update', None)
         payload['upsert'] = kwargs.get('upsert', False)
@@ -76,9 +64,6 @@ class UpdateMany(DataAPICommand):
 
 class ReplaceOne(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['filter'] = kwargs.get('filter', None)
         payload['replacement'] = kwargs.get('replacement', None)
         payload['upsert'] = kwargs.get('upsert', False)
@@ -89,9 +74,6 @@ class ReplaceOne(DataAPICommand):
     
 class DeleteOne(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['filter'] = kwargs.get('filter', None)
         self.payload = payload
 
@@ -101,9 +83,6 @@ class DeleteOne(DataAPICommand):
 
 class DeleteMany(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['filter'] = kwargs.get('filter', None)
         self.payload = payload
     
@@ -112,9 +91,6 @@ class DeleteMany(DataAPICommand):
     
 class Aggregation(DataAPICommand):
     def __init__(self, payload, **kwargs):
-        payload['dataSource'] = kwargs.get('dataSource', None)
-        payload['database'] = kwargs.get('database', None)
-        payload['collection'] = kwargs.get('collection', None)
         payload['pipeline'] = kwargs.get('pipeline', None)
         self.payload = payload
     

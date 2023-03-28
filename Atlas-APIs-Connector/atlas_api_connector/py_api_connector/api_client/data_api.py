@@ -2,7 +2,7 @@ import json
 import requests
 
 import py_api_connector.utils.setup as setup
-from py_api_connector.utils.enum import CRUD, ERROR_CODE
+from py_api_connector.utils.enum import CRUD, RESPONSE_CODE
 import logging
 
 logger = logging.getLogger(__name__)
@@ -20,10 +20,13 @@ class DataAPIClient:
         For authenticating the API Key and returning if it is valid or not.
         '''
         logger.info("API authentication started")
+        # Sets the operation to perform find one
         self.set_operation(CRUD.FIND_ONE)
+        # Sets the empty payloads
         self.set_payload()
+        # Execute and get the result
         response = self.execute()
-        return response.status_code == 200
+        return response.status_code == RESPONSE_CODE.SUCCESS.value
 
     def set_operation(self, operation):
         '''
@@ -76,7 +79,7 @@ class DataAPIClient:
             # Handle any HTTP errors here
             status_code = httpError.response.status_code
 
-            if status_code == ERROR_CODE.BAD_REQUEST.value:
+            if status_code == RESPONSE_CODE.BAD_REQUEST.value:
                 logger.error("Bad Request \n\
                       The request was invalid. This might mean:\
                       \n - A request header is missing.\
@@ -85,15 +88,15 @@ class DataAPIClient:
                       \n - The specified data source is disabled or does not exist.\
                       \n - The specified database or collection does not exist.")
 
-            elif status_code == ERROR_CODE.UNAUTHOURISED.value:
+            elif status_code == RESPONSE_CODE.UNAUTHOURISED.value:
                 logger.error("Unauthorized \n\
                       - The request did not include an authorized and enabled Data API Key. Ensure that your Data API Key is enabled for the cluster.")
 
-            elif status_code == ERROR_CODE.NOT_FOUND.value:
+            elif status_code == RESPONSE_CODE.NOT_FOUND.value:
                 logger.error("Not found\n\
                       - The request was sent to an endpoint that does not exist.")
 
-            elif status_code >= ERROR_CODE.SERVER_ERROR.value:
+            elif status_code >= RESPONSE_CODE.SERVER_ERROR.value:
                 logger.error("Server Error \n\
                       - The Data API encountered an internal error and could not complete the request.")
 
@@ -102,4 +105,4 @@ class DataAPIClient:
         except Exception as e:
             # Handle any other exceptions here
             logger.error('An unexpected error occurred:', e)
-            return ERROR_CODE.SERVER_ERROR.value
+            return RESPONSE_CODE.SERVER_ERROR.value
