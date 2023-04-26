@@ -11,7 +11,7 @@ This architecture gives an idea on how the connector is build to put forward an 
 
 
 ## Supported functionalities : 
-1.  **Client Initialization** :
+### 1.  **Client Initialization** :
 
   Follow [these](https://www.mongodb.com/docs/atlas/api/data-api/#get-started) steps to get started with Data API.
   Once the Data API is enabled update the following parameters in a config file. 
@@ -35,7 +35,7 @@ This architecture gives an idea on how the connector is build to put forward an 
   ```
 
 
-2.  **Authentication** : 
+### 2.  **Authentication** : 
 
   The client authentication and authorization comes in as the most import part of the connector, you should be well aware that your client is authenticated and the connection established is secure for communication and data transfer.
   For this, you can use various different options available here.
@@ -51,7 +51,7 @@ This architecture gives an idea on how the connector is build to put forward an 
   
   Based on the response from the server it either responds with True or False, indicating if the API KEY is correct or not.
   
-3.  **Running CRUD Operations** : 
+### 3.  **Running CRUD Operations** : 
 
   a.  Select the operation to be carried out ( All operations are listed [here](https://www.mongodb.com/docs/atlas/api/data-api-resources/) ): 
   ```
