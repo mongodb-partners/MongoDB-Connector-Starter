@@ -53,13 +53,15 @@ This architecture gives an idea on how the connector is build to put forward an 
   
 ### 3.  **Running CRUD Operations** : 
 
-  a.  Select the operation to be carried out ( All operations are listed [here](https://www.mongodb.com/docs/atlas/api/data-api-resources/) ): 
+   a.  Select the operation to be carried out ( All operations are listed [here](https://www.mongodb.com/docs/atlas/api/data-api-resources/) ): 
+ 
   ```
   # Set the operation to be performed
   client.set_operation(pyAPI.CRUD.FIND_ONE)
   ```
   
   b.  Set the payload as required : 
+  
   ```
   # Set the payload, might include filter, projections.
   client.set_payload(
@@ -69,6 +71,7 @@ This architecture gives an idea on how the connector is build to put forward an 
   ```
 
   c.  Execute the operation :
+  
   ```
   # Execute the client and get the response.
   response = client.execute()
