@@ -26,7 +26,7 @@ class DataAPIClient:
         self.set_payload()
         # Execute and get the result
         response = self.execute()
-        return response.status_code == RESPONSE_CODE.SUCCESS.value
+        return response['status_code'] == RESPONSE_CODE.SUCCESS.value
 
     def set_operation(self, operation):
         '''
@@ -61,10 +61,10 @@ class DataAPIClient:
         For executing the request and returning the response.
         '''
         try:
-            print("Execution values :: \n\b",
-                  self.url, "\n",
-                  self.headers, "\n",
-                  self.payload)
+            # print("Execution values :: \n\b",
+            #       self.url, "\n",
+            #       self.headers, "\n",
+            #       self.payload)
 
             response = requests.request(
                 "POST",
@@ -72,8 +72,9 @@ class DataAPIClient:
                 headers=self.headers,
                 data=self.payload
             )
+            # Raises if error occured based on status code
             response.raise_for_status()
-            return response
+            return {"status_code": response.status_code , "msg" : response.content}
 
         except requests.exceptions.HTTPError as httpError:
             # Handle any HTTP errors here
