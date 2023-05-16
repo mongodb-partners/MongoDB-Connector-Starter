@@ -17,7 +17,6 @@ client = pyAPI.DataAPIClient(base_url=config.BASE_URL,
                              collection=config.COLLECTION_NAME,
                              api_key=config.API_KEY)
 
-
 def check_auth(func):
     # Checks for authentication
     def authenticate():

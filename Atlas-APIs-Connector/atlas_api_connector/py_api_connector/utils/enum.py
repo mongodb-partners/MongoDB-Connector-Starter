@@ -17,6 +17,7 @@ class CRUD(Enum):
 
 class RESPONSE_CODE(Enum):
     SUCCESS = 200
+    INSERTED = 201
     BAD_REQUEST = 400
     UNAUTHOURISED = 401
     NOT_FOUND = 404
